@@ -1,9 +1,9 @@
-830186934bfc303b0a8b359f1fe3b192 *DESCRIPTION
+c68f89fb576c0ce1cc332aeca2a814da *DESCRIPTION
 a141150c4a735df58800385465c01b68 *NAMESPACE
 f2698a6d408577954d724357fbf275de *R/Final.R
-0caaf75175908141facb6ff04aed1ef9 *build/partial.rdb
+37a3aa2438466fd05e59ba620a9ada1d *build/partial.rdb
 ba2b023bb4fc472a380f866f34fb1ca6 *man/Kmeans.Rd
-da4d38f79ace21a07c58d5ab05e309c1 *man/Kmedians-package.Rd
-c870257ec3d2224c556a772e1ccbc4b3 *man/Kmedians.Rd
+8d7b97b935eb6bd7d65042147a51430b *man/Kmedians-package.Rd
+cc43af5c17bf9920490017626be744d4 *man/Kmedians.Rd
 d2a442b36ff8f621c28483563b87d521 *man/Kplot.Rd
 fa638379430569c142982be84a790d40 *man/gen_K.Rd

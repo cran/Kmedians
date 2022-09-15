@@ -36,6 +36,8 @@ For the lists \code{bestresult} and \code{allresults}:
 \seealso{
 See also \code{\link{Kmeans}}, \code{\link{Kplot}} and \code{\link{gen_K}}.
 }
+\references{Godichon-Baggioni, A. and Surendran, S. A penalized criterion for selecting the number of clusters for K-medians. \emph{arxiv.org/abs/2209.03597}
+}
 \keyword{Robust clustering}
 \examples{
 n <- 500

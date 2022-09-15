@@ -1,7 +1,7 @@
 Package: Kmedians
 Type: Package
 Title: K-Medians
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(person("Antoine","Godichon-Baggioni", role = c("aut", "cre","cph"),
                       email = "antoine.godichon_baggioni@upmc.fr"),
                person("Sobihan","Surendran", role = "aut") )
@@ -17,6 +17,7 @@ Description: Online, Semi-online, and Offline K-medians algorithms are
     methods. 
     Cardot, H., Cenac, P. and Zitt, P-A. (2013). "Efficient and fast estimation of the geometric median in Hilbert spaces with an averaged stochastic gradient algorithm". Bernoulli, 19, 18-43. <doi:10.3150/11-BEJ390>.
     Cardot, H. and Godichon-Baggioni, A. (2017). "Fast Estimation of the Median Covariation Matrix with Application to Online Robust Principal Components Analysis". Test, 26(3), 461-480 <doi:10.1007/s11749-016-0519-x>.
+    Godichon-Baggioni, A. and Surendran, S. "A penalized criterion for selecting the number of clusters for K-medians"     <arXiv:2209.03597> 
     Vardi, Y. and Zhang, C.-H. (2000). "The multivariate L1-median and associated data depth". Proc. Natl. Acad. Sci. USA, 97(4):1423-1426. <doi:10.1073/pnas.97.4.1423>.
 License: GPL (>= 2)
 Encoding: UTF-8
@@ -24,9 +25,9 @@ Imports: foreach, doParallel,parallel, genieclust, Gmedian,mvtnorm,
         capushe, ggplot2, reshape2
 RoxygenNote: 7.1.2
 NeedsCompilation: no
-Packaged: 2022-09-05 11:37:54 UTC; Godichon-Baggioni
+Packaged: 2022-09-15 06:58:39 UTC; Godichon-Baggioni
 Author: Antoine Godichon-Baggioni [aut, cre, cph],
   Sobihan Surendran [aut]
 Maintainer: Antoine Godichon-Baggioni <antoine.godichon_baggioni@upmc.fr>
 Repository: CRAN
-Date/Publication: 2022-09-06 06:10:05 UTC
+Date/Publication: 2022-09-15 09:00:06 UTC
