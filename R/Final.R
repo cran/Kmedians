@@ -417,7 +417,7 @@ Kmeans=function(X,nclust=1:15,ninit=1,niter=20,par=TRUE)
       cl = makeCluster(numCores)
       registerDoParallel(cl)
       resultat=foreach(K=nclust,.multicombine = TRUE ,.inorder = TRUE,
-                       .packages = c('genieclust','Gmedian','stats','dplyr'),
+                       .packages = c('genieclust','Gmedian','stats'),
                        .combine='list')  %dopar%
         {
           resultatk=kmeansmaison(X,K=K,ninit=ninit,niter=niter)
@@ -430,7 +430,7 @@ Kmeans=function(X,nclust=1:15,ninit=1,niter=20,par=TRUE)
     if (par ==FALSE)
     {
       resultat=foreach(K=nclust,.multicombine = TRUE, .inorder = TRUE,
-                       .packages = c('genieclust','Gmedian','dplyr'),
+                       .packages = c('genieclust','Gmedian'),
                        .combine='list')  %do%
         {
           resultatk=kmeansmaison(X,K=K,ninit=ninit,niter=niter)

@@ -1,7 +1,7 @@
-c68f89fb576c0ce1cc332aeca2a814da *DESCRIPTION
+1d2849d7844e007d6475b426b65968a2 *DESCRIPTION
 a141150c4a735df58800385465c01b68 *NAMESPACE
-f2698a6d408577954d724357fbf275de *R/Final.R
-37a3aa2438466fd05e59ba620a9ada1d *build/partial.rdb
+bf73e0214d430a3dd9302bd0aad0563f *R/Final.R
+2e1b9f6fdfa89aef31643364e89036df *build/partial.rdb
 ba2b023bb4fc472a380f866f34fb1ca6 *man/Kmeans.Rd
 8d7b97b935eb6bd7d65042147a51430b *man/Kmedians-package.Rd
 cc43af5c17bf9920490017626be744d4 *man/Kmedians.Rd
