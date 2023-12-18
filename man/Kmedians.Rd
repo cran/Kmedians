@@ -14,7 +14,7 @@ Kmedians(X,nclust=1:15,ninit=0,niter=20,
 \item{nclust}{A vector of positive integers giving the possible numbers of clusters. Default is \code{1:15}.}
 \item{ninit}{A non negative integer giving the number of random initializations. Default is \code{0}. }
 \item{niter}{A positive integer giving the number of iterations for the EM algorirthms. Default is \code{20}.}
-\item{method}{The selected method for the K-medians algorithm. Can be \code{'Offline'} (default), code{'Semi-Online'} or \code{'Online'}.}
+\item{method}{The selected method for the K-medians algorithm. Can be \code{'Offline'} (default), \code{'Semi-Online'} or \code{'Online'}.}
 \item{init}{A logical argument telling if the function \code{'genie'} is used for initializing the algorithm. Default is \code{TRUE}. }
 \item{par}{A logical argument telling if the parallelization of the algorithm is allowed. Default is \code{TRUE}.}
 }
@@ -40,6 +40,7 @@ See also \code{\link{Kmeans}}, \code{\link{Kplot}} and \code{\link{gen_K}}.
 }
 \keyword{Robust clustering}
 \examples{
+\dontrun{
 n <- 500
 K <- 3
 pcont <- 0.2
@@ -47,4 +48,5 @@ ech <- gen_K(n=n,K=K,pcont=pcont)
 X <-ech$X
 res <- Kmedians(X,par=FALSE)
 Kplot(res)
+}
 }

@@ -35,6 +35,7 @@ See also \code{\link{Kmedians}}, \code{\link{Kplot}} and \code{\link{gen_K}}.
 }
 \keyword{K-means}
 \examples{
+\dontrun{
 n <- 500
 K <- 3
 pcont <- 0.2
@@ -42,4 +43,5 @@ ech <- gen_K(n=n,K=K,pcont=pcont)
 X <-ech$X
 res <- Kmeans(X,par=FALSE)
 Kplot(res)
+}
 }

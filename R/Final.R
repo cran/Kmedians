@@ -12,8 +12,17 @@ KmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
   finalcluster=rep(0,nrow(X))
   finalniter=0
   finalSE=10^10
+  if (K==1)
+  {
+    centers=Gmedian::Weiszfeld(X)$median
+    finalcenters=centers
+    finalcluster=rep(1,nrow(X))
+    finaldist=sqrt(rowSums((X-matrix(rep(centers,n),nrow=n,byrow=T))^2))
+    finalSE=sum(finaldist)
+  }
   if (init==T)
   {
+    if (K>1){
     dist=matrix(0,nrow=nrow(X),ncol=K)
     Sigma=c()
     cluster=genieclust::genie(X,k=K)
@@ -63,10 +72,12 @@ KmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
         finalSE=SE
       }
     }
+    }
 
   }
   if (ninit>0)
   {
+    if (K>1){
     for (o in 1:ninit)
     {
       dist=matrix(0,nrow=nrow(X),ncol=K)
@@ -108,6 +119,7 @@ KmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
       }
     }
   }
+}
   resultat=list(cluster=finalcluster,centers=finalcenters,
                 SE=finalSE)
   return(resultat)
@@ -126,8 +138,17 @@ OnlineKmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
   finalcluster=rep(0,nrow(X))
   finalniter=0
   finalSE=10^10
+  if (K==1)
+  {
+    centers=Gmedian::Gmedian(X)
+    finalcenters=centers
+    finalcluster=rep(1,nrow(X))
+    finaldist=sqrt(rowSums((X-matrix(rep(centers,n),nrow=n,byrow=T))^2))
+    finalSE=sum(finaldist)
+  }
   if (init==T)
   {
+    if (K>1){
     dist=matrix(0,nrow=nrow(X),ncol=K)
     Sigma=c()
     cluster=genieclust::genie(X,k=K)
@@ -144,7 +165,7 @@ OnlineKmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
       }
     }
     l=0
-    resultat=kGmedian(X,ncenters=centers,nstart=1,nstartkmeans=0,iter.max=0)
+    resultat=kGmedian(X,ncenters=centers,nstart=1,nstartkmeans=0,iter.max=1)
     finalcluster=resultat$cluster
     finalcenters=resultat$centers
     SE=0
@@ -157,9 +178,11 @@ OnlineKmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
     }
     finaldist=dist
     finalSE=SE
+    }
   }
   if (ninit>0)
   {
+    if (K>1){
     for (o in 1:ninit)
     {
       dist=matrix(0,nrow=nrow(X),ncol=K)
@@ -167,7 +190,7 @@ OnlineKmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
       centers=X[sample(1:n,K),]
       l=0
       distclust=1
-      resultat=kGmedian(X,ncenters=centers,nstart=1,nstartkmeans=0,iter.max=0)
+      resultat=kGmedian(X,ncenters=centers,nstart=1,nstartkmeans=0,iter.max=1)
       SE=0
       for (k in 1:K)
       {
@@ -183,6 +206,7 @@ OnlineKmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
         finaldist=resultat$withinsrs
         finalSE=resultat=sum(resultat$withinsrs)
       }
+    }
     }
   }
   resultat=list(cluster=finalcluster,centers=finalcenters,dist=finaldist,
@@ -203,8 +227,17 @@ KGmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
   finalcluster=rep(0,nrow(X))
   finalniter=0
   finalSE=10^10
+  if (K==1)
+  {
+    centers=Gmedian::Gmedian(X)
+    finalcenters=centers
+    finalcluster=rep(1,nrow(X))
+    finaldist=sqrt(rowSums((X-matrix(rep(centers,n),nrow=n,byrow=T))^2))
+    finalSE=sum(finaldist)
+  }
   if (init==T)
   {
+    if (K>1){
     dist=matrix(0,nrow=nrow(X),ncol=K)
     Sigma=c()
     cluster=genieclust::genie(X,k=K)
@@ -255,9 +288,11 @@ KGmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
       }
     }
 
+    }
   }
   if (ninit>0)
   {
+    if (K>1){
     for (o in 1:ninit)
     {
       dist=matrix(0,nrow=nrow(X),ncol=K)
@@ -297,6 +332,7 @@ KGmedianK=function(X,K=3,ninit=0,niter=20,init=TRUE)
           finalSE=SE
         }
       }
+    }
     }
   }
   resultat=list(cluster=finalcluster,centers=finalcenters,
@@ -342,7 +378,7 @@ Kmedians=function(X,nclust=1:15,ninit=0,niter=20,
       numCores = min(detectCores()-2,length(nclust))
       cl = makeCluster(numCores  )
       registerDoParallel(cl)
-      resultat=foreach(K=nclust,.multicombine = TRUE ,.inorder = TRUE,
+      resultat=foreach(K=nclust,.multicombine = TRUE ,.inorder = TRUE,.export = c('Kmed','KmedianK'),
                        .packages = c('genieclust','Gmedian'),
                        .combine='list')  %dopar%
         {
@@ -356,7 +392,7 @@ Kmedians=function(X,nclust=1:15,ninit=0,niter=20,
 
     if (par ==FALSE)
     {
-      resultat=foreach(K=nclust,.multicombine = TRUE, .inorder = TRUE,
+      resultat=foreach(K=nclust,.multicombine = TRUE, .inorder = TRUE,.export = c('Kmed','KmedianK'),
                        .packages = c('genieclust','Gmedian'),
                        .combine='list')  %do%
         {
@@ -416,7 +452,7 @@ Kmeans=function(X,nclust=1:15,ninit=1,niter=20,par=TRUE)
       numCores = min(detectCores()-2,length(nclust))
       cl = makeCluster(numCores)
       registerDoParallel(cl)
-      resultat=foreach(K=nclust,.multicombine = TRUE ,.inorder = TRUE,
+      resultat=foreach(K=nclust,.multicombine = TRUE ,.inorder = TRUE,.export = c('Kmed','KmedianK'),
                        .packages = c('genieclust','Gmedian','stats'),
                        .combine='list')  %dopar%
         {
@@ -429,7 +465,7 @@ Kmeans=function(X,nclust=1:15,ninit=1,niter=20,par=TRUE)
 
     if (par ==FALSE)
     {
-      resultat=foreach(K=nclust,.multicombine = TRUE, .inorder = TRUE,
+      resultat=foreach(K=nclust,.multicombine = TRUE, .inorder = TRUE,.export = c('Kmed','KmedianK'),
                        .packages = c('genieclust','Gmedian'),
                        .combine='list')  %do%
         {
@@ -504,7 +540,9 @@ Kplot=function(a,propplot=0.95,graph=c('Two_Dim','Capushe','Profiles','SE','Crit
   nclust=a$nclust
   X=a$data
   d=ncol(X)
-
+  if (length(nclust)==1){
+    Ksel=nclust
+  }
   if (length(nclust) <=10)
   {
     message('no model has been selected. The length of nclust must be larger than 10')

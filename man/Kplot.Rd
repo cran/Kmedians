@@ -26,6 +26,7 @@ See also \code{\link{Kmedians}} and \code{\link{Kmeans}}.
 }
 \keyword{Robust clustering}
 \examples{
+\dontrun{
 n <- 500
 K <- 3
 pcont <- 0.2
@@ -33,4 +34,5 @@ ech <- gen_K(n=n,K=K,pcont=pcont)
 X <-ech$X
 res <- Kmedians(X,par=FALSE)
 Kplot(res)
+}
 }

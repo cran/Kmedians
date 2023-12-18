@@ -1,7 +1,7 @@
 Package: Kmedians
 Type: Package
 Title: K-Medians
-Version: 1.2.0
+Version: 2.2.0
 Authors@R: c(person("Antoine","Godichon-Baggioni", role = c("aut", "cre","cph"),
                       email = "antoine.godichon_baggioni@upmc.fr"),
                person("Sobihan","Surendran", role = "aut") )
@@ -25,9 +25,9 @@ Imports: foreach, doParallel,parallel, genieclust, Gmedian,mvtnorm,
         capushe, ggplot2, reshape2
 RoxygenNote: 7.1.2
 NeedsCompilation: no
-Packaged: 2022-11-14 13:22:25 UTC; Godichon-Baggioni
+Packaged: 2023-12-18 13:26:49 UTC; Godichon-Baggioni
 Author: Antoine Godichon-Baggioni [aut, cre, cph],
   Sobihan Surendran [aut]
 Maintainer: Antoine Godichon-Baggioni <antoine.godichon_baggioni@upmc.fr>
 Repository: CRAN
-Date/Publication: 2022-11-15 22:00:05 UTC
+Date/Publication: 2023-12-18 13:40:05 UTC
